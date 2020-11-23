@@ -34,9 +34,9 @@ alias ping='ping -c 5'
 
 
 ### Git ###
-# mnemonic: sg(short git) + operation (eg: sgpush => short git push)
-alias sgpush="git push"
-alias sgpull="git pull"
+# mnemonic: sg(short git) + operation (eg: sgsave => short git + )
+alias sgup="git push"
+alias sgdown="git pull"
 alias sgadd="git add"
-alias sgcommit="git commit -m"
+alias sgcommit="sgadd . && git commit"
 alias sgstatus="git status"
