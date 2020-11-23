@@ -1,0 +1,40 @@
+-- trying the following color pallet
+-- pink   = #ff71ce (focused)
+-- purple = #b967ff (unfocused)
+-- yellow = #fffb96 (hidden)
+-- blue   = #01cdfe (random 2)
+-- green  = #05ffa1 (random 2)
+
+Config {
+    --Appearence
+    font = "xft:Ubuntu:weight=bold:pixelsize=12:antialias=true:hinting=true",
+    additionalFonts = [
+        "xft:Mononoki Nerd Font:pixelsize=11:antialias=true:hinting=true",
+        "xft:Mononoki Nerd Font:pixelsize=16:antialias=true:hinting=true",
+        "xft:FontAwesome:pixelsize=12"
+    ],
+    bgColor      = "black",
+    fgColor      = "#05ffa1",
+    position     = TopW L 100,
+    lowerOnStart = True,
+    hideOnStart  = False,
+    allDesktops  = True,
+    persistent   = True,
+    alpha        = 120,
+
+    --Plugins
+    commands = [
+        Run StdinReader,
+        Run Date "<fn=3>\xf133</fn> %b %d %Y (%H:%M)" "date" 50,
+        Run Cpu ["-t", "CPU: (<total>%)", "-H", "50", "--high", "red"] 10,
+        Run Memory ["-t", "RAM: <used>M (<usedratio>%)"] 20,
+        Run DynNetwork ["-t", "Network: <fn=3>\xf0ee</fn> <tx>kB/s  <fn=3>\xf0ed</fn> <rx>kB/s"] 20,
+        -- Custom scripts
+        Run Com "/bin/bash" ["-c", "~/.xmobar/scripts/get-volume.sh"]  "myVolume" 1,
+        Run Com "/bin/bash" ["-c", "~/.xmobar/scripts/get-weather.sh"] "myWeather" 36000
+    ],
+    --Layout
+    sepChar = "%",
+    alignSep = "}{",
+    template = "%StdinReader% } <fc=#01cdfe>%myWeather%</fc>     <fc=#fffb96>%date%</fc> { %myVolume% | %cpu% | %memory% | %dynnetwork%"
+}

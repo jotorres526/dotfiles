@@ -1,0 +1,12 @@
+* {
+  /* Variables */
+  accent:           #ff71ce;
+  background:       #1c1c1c;
+  background-focus: #282828;
+  background-light: #1f1f1f;
+  foreground:       #fffb96;
+  /* Settings */
+  background-color: @background;
+  text-color:       @foreground;
+  font:             "Ubuntu Mono 60";
+}

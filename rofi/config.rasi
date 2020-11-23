@@ -1,0 +1,14 @@
+/**
+ * Commands to use the various scripts of this config (might need to chmod +x them):
+ *  - drun:         rofi -show drun -theme themes/drun.rasi
+ *  - powermenu:    ~/.config/rofi/scripts/powermenu.sh
+ */
+configuration {
+  show-icons:         true;
+  cycle:              true;
+  hide-scrollbar:     true;
+  disable-history:    false;
+  display-drun:       "Apps";
+  display-window:     "Windows";
+  columns:            2;
+}

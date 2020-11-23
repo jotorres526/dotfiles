@@ -1,0 +1,52 @@
+@import "colors.rasi"
+* {
+  /* Variables */
+  foreground:       #b967ff;
+  /* Settings */
+  font:             "Ubuntu bold 14";
+}
+
+/* Input window */
+inputbar,
+prompt,
+textbox-prompt-colon,
+entry {
+  background-color: @background-light;
+}
+#inputbar {
+  children: [ prompt, textbox-prompt-colon, entry ];
+  /*      vertical    horizontal */
+  margin: 4px         4px;
+}
+#prompt {
+  /*       vertical   horizontal */
+  padding: 10px       15px;
+  background-color: @accent;
+  text-color: @background;
+}
+#textbox-prompt-colon {
+  expand: false;
+  str: " : : ";
+  padding: 8px;
+}
+#entry {
+  text-color: @accent;
+  /*       top    right   bottom  left */
+  padding: 8px    8px     8px     0px;
+}
+/* List of entries */
+#element {
+  padding: 8px;
+  /*      vertical    horizontal */
+  margin: 4px         4px;
+  /*      top     right   bottom  left */
+  border: 0px     0px     0px     8px;
+  background-color: @background-light;
+  border-color: @background-light;
+}
+#element.selected {
+  background-color: @background-focus;
+  text-color: @accent;
+  border-color: @accent;
+}
+

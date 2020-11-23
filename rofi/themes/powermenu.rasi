@@ -1,0 +1,26 @@
+@import "colors.rasi"
+
+#window {
+  width:    506px;
+  children: [ horibox ];
+}
+#horibox {
+  children: [ listview ];
+}
+#listview {
+  layout:  horizontal;
+  spacing: 10px;
+}
+#element {
+  /**
+   * Values bellow are 'no-padding' ones, to which we add 70
+   *       top    right   bottom  left
+   *       -14px  0px     -14px   -93px */
+  padding: 6px   20px    6px      -73px;
+  background-color: @background-light;
+}
+#element.selected {
+  background-color: @accent;
+  text-color: @background;
+}
+
