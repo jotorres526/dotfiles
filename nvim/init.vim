@@ -1,4 +1,13 @@
 "############### PLUGINS ###############
+
+" Install vim-plug if not found
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+
+
 call plug#begin('~/.config/nvim/plugged')
 
 " Nerd tree to see file structure
@@ -16,6 +25,7 @@ call plug#end()
 
 "############### COLOR #################
 set termguicolors
+
 let g:lightline = {
     \ 'colorscheme': 'seoul256',
     \ }
@@ -95,3 +105,5 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Automatically close NERDTree if it's the last window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
