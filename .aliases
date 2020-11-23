@@ -10,15 +10,13 @@ alias la="exa -lah --color=always --group-directories-first --git"
 # Copy with progress bar
 alias cp="rsync -ah --info=progress2"
 
+# mkdir
+alias mkdir="mkdir -p"
+
 # Safely delete files
 alias rm="echo rm is disabled. Use 'delete' or '/bin/rm' instead"
-delete () {
-    mv --force -t ~/.local/share/Trash "$1"
-    if [ $? -eq 0 ];then
-        echo Delete successful
-    fi
-}
-
+alias delete="trash-put"
+alias restore="trash-restore"
 
 ### Package management ###
 # mnemonic: pac(package) + operation (eg: paci => package install)
@@ -34,9 +32,15 @@ alias ping='ping -c 5'
 
 
 ### Git ###
-# mnemonic: sg(short git) + operation (eg: sgsave => short git + )
+# mnemonic: sg(short git) + operation (eg: sgup => short git + upload(push))
 alias sgup="git push"
-alias sgdown="git pull"
+alias sgdn="git pull"
 alias sgadd="git add"
-alias sgcommit="sgadd . && git commit"
-alias sgstatus="git status"
+alias sgcom="sgadd . && git commit"
+alias sgsta="git status"
+# Clone repo into ~/Repositories and cd to the project
+sgcl() {
+    mkdir ~/Repositories && cd ~/Repositories
+    git clone $1
+    cd "$(basename "$1" .git)"
+}
