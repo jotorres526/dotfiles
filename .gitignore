@@ -1,5 +1,5 @@
 plugged/
 autoload/
-xmonad/
-    !xmonad.hs
-    !scripts/
+.xmonad/*
+!.xmonad/scripts/
+!.xmonad/xmonad.hs
