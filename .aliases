@@ -1,0 +1,42 @@
+### Objective -> trying to create mnemonics and command groups to easily check with autocomplete
+
+### List ###
+# Human readable ls
+alias ls="exa -lh --color=always --group-directories-first --git"
+# ls all
+alias la="exa -lah --color=always --group-directories-first --git"
+
+### Files ###
+# Copy with progress bar
+alias cp="rsync -ah --info=progress2"
+
+# Safely delete files
+alias rm="echo rm is disabled. Use 'delete' or '/bin/rm' instead"
+delete () {
+    mv --force -t ~/.local/share/Trash "$1"
+    if [ $? -eq 0 ];then
+        echo Delete successful
+    fi
+}
+
+
+### Package management ###
+# mnemonic: pac(package) + operation (eg: paci => package install)
+alias paci="sudo apt install"
+alias pacup="sudo apt update"
+alias pacrem="sudo apt purge"
+alias pacautorem="sudo apt autoremove"
+alias pacs="sudo apt search"
+alias pacl="sudo apt list --installed"
+
+### Network ###
+alias ping='ping -c 5'
+
+
+### Git ###
+# mnemonic: sg(short git) + operation (eg: sgpush => short git push)
+alias sgpush="git push"
+alias sgpull="git pull"
+alias sgadd="git add"
+alias sgcommit="git commit -m"
+alias sgstatus="git status"

@@ -20,6 +20,9 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'mhinz/vim-startify'
 " See ident lines
 Plug 'Yggdroot/indentLine'
+" Synthatic sugar
+Plug 'tpope/vim-eunuch'
+
 
 call plug#end()
 

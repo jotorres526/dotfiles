@@ -3,3 +3,4 @@ autoload/
 .xmonad/*
 !.xmonad/scripts/
 !.xmonad/xmonad.hs
+.zsh/cache
