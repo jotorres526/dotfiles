@@ -25,7 +25,7 @@ Config {
     --Plugins
     commands = [
         Run StdinReader,
-        Run Date "<fn=3>\xf133</fn> %b %d %Y (%H:%M)" "date" 50,
+        Run Date "<fn=3>\xf133</fn> %b %d %Y (%H:%M:%S)" "date" 10,
         Run Cpu ["-t", "CPU: (<total>%)", "-H", "50", "--high", "red"] 10,
         Run Memory ["-t", "RAM: <used>M (<usedratio>%)"] 20,
         Run DynNetwork ["-t", "Network: <fn=3>\xf0ee</fn> <tx>kB/s  <fn=3>\xf0ed</fn> <rx>kB/s"] 20,
@@ -36,5 +36,5 @@ Config {
     --Layout
     sepChar = "%",
     alignSep = "}{",
-    template = "%StdinReader% } <fc=#01cdfe>%myWeather%</fc>     <fc=#fffb96>%date%</fc> { %myVolume% | %cpu% | %memory% | %dynnetwork%"
+    template = "%StdinReader% } %myWeather%    <action=`gsimplecal` button=1><fc=#fffb96>%date%</fc></action> { <action=`pavucontrol` button=1><fc=#fffb96>%myVolume%</fc></action> | %cpu% | %memory% | %dynnetwork%"
 }

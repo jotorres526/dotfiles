@@ -11,4 +11,3 @@ ln -s $currDir/nvim $HOME/.config/nvim
 ln -s $currDir/rofi $HOME/.config/rofi
 ln -s $currDir/.aliases $HOME/.aliases
 ln -s $currDir/compton.conf $HOME/.config/compton.conf
-ln -s $currDir/.zshrc $HOME/.zshrc

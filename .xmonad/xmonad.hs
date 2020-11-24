@@ -27,7 +27,6 @@ import qualified Data.ByteString as B
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W
 
-
 -- trying the following color pallet
 -- pink   = #ff71ce (focused)
 -- purple = #b967ff (unfocused)
@@ -58,11 +57,11 @@ myFont        = "xft:Ubuntu:weight=bold:pixelsize=12:antialias=true:hinting=true
 -- Window manipulations
 myManageHook = composeAll . concat $
     [
-        [isDialog --> doCenterFloat], -- Dialogs should be floating and centered
+        [isDialog       --> doCenterFloat], -- Dialogs should be floating and centered
         [className =? c --> doCenterFloat | c <- myCFloats],
-        [title =? t --> doFloat | t <- myTitleFloats],
-        [resource =? rf --> doFloat | rf <- myResFloats],
-        [resource =? ri --> doIgnore | ri <- myIgnores],
+        [title =? t     --> doFloat       | t <- myTitleFloats],
+        [resource =? rf --> doFloat       | rf <- myResFloats],
+        [resource =? ri --> doIgnore      | ri <- myIgnores],
         [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "I"    | x <- my1Shifts],
         [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "II"   | x <- my2Shifts],
         [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "III"  | x <- my3Shifts],
@@ -73,9 +72,9 @@ myManageHook = composeAll . concat $
         [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "VIII" | x <- my8Shifts],
         [(className =? x <||> title =? x <||> resource =? x) --> doShiftAndGo "X"    | x <- my9Shifts]
     ] where
-        doShiftAndGo  = doF . liftM2 (.) W.greedyView W.shift
-        myCFloats     = []
-        myTitleFloats = ["Downloads", "Save As...", "Calculator"]
+        doShiftAndGo  = doF .  liftM2 (.) W.greedyView W.shift
+        myCFloats     = ["Gnome-calculator", "Pavucontrol"]
+        myTitleFloats = ["Downloads", "Save As..."]
         myResFloats   = []
         myIgnores     = ["desktop_window"]
         my1Shifts     = ["kitty"]
@@ -92,9 +91,9 @@ myManageHook = composeAll . concat $
 -- Layouts
 myLayout = spacingRaw True (Border 0 5 5 5) True (Border 5 5 5 5) True $ avoidStruts $ mkToggle (NBFULL ?? NOBORDERS ?? EOT) $ smartBorders $ tiled ||| Mirror tiled ||| spiral (6/7)  ||| ThreeColMid 1 (3/100) (1/2) ||| Full
     where
-        tiled = Tall nmaster delta tiled_ratio
-        nmaster = 1
-        delta = 3/100
+        tiled       = Tall nmaster delta tiled_ratio
+        nmaster     = 1
+        delta       = 3/100
         tiled_ratio = 1/2
 
 main = do
@@ -104,18 +103,18 @@ main = do
             startupHook = myStartupHook,
             layoutHook  =  avoidStruts $ gaps [(U,5), (D,5), (R,5), (L,5)] $ myLayout,
             logHook = dynamicLogWithPP xmobarPP {
-                ppCurrent = xmobarColor "#ff71ce" "" . wrap "[" "]",
-                ppHidden  = xmobarColor "#b967ff" "",
+                ppCurrent         = xmobarColor "#ff71ce" "" . wrap "[" "]",
+                ppHidden          = xmobarColor "#b967ff" "",
                 ppHiddenNoWindows = xmobarColor "#fffb96" "",
-                ppOutput  = hPutStrLn xmproc,
-                ppLayout  = xmobarColor "#01cdfe" "" . (\layout -> case layout of
+                ppOutput          = hPutStrLn xmproc,
+                ppLayout          = xmobarColor "#01cdfe" "" . (\layout -> case layout of
                     "Spacing Tall"        -> "[ | ]"
                     "Spacing Mirror Tall" -> "[---]"
                     "Spacing Spiral"      -> "[ @ ]"
                     "Spacing ThreeCol"    -> "[ || ]"
                     "Spacing Full"        -> "[   ]"
                 ),
-                ppTitle   = xmobarColor "#ff71ce" "" . shorten 50
+                ppTitle = xmobarColor "#ff71ce" "" . shorten 50
             },
             manageHook         = manageSpawn <+> myManageHook <+> manageHook myBaseConfig,
             modMask            = myModMask,
@@ -128,31 +127,31 @@ main = do
         } `additionalKeysP`
         [
             -- MULTIMEDIA KEYS
-            ("<XF86AudioMute>", spawn "amixer -qD pulse sset Master toggle"),
-            ("<XF86AudioLowerVolume>", spawn "amixer -qD pulse sset Master 5%-"),
-            ("<XF86AudioRaiseVolume>", spawn "amixer -qD pulse sset Master 5%+"),
-            ("<XF86MonBrightnessUp>",  spawn "xbacklight -inc 5"),
-            ("<XF86MonBrightnessDown>", spawn "xbacklight -dec 5"),
-            ("<XF86AudioPlay>", spawn "playerctl play-pause"),
-            ("<XF86AudioNext>", spawn "playerctl next"),
-            ("<XF86AudioPrev>", spawn "playerctl previous"),
-            ("<XF86AudioStop>", spawn "playerctl stop")
+            ("<XF86AudioMute>"         , spawn "amixer -qD pulse sset Master toggle"),
+            ("<XF86AudioLowerVolume>"  , spawn "amixer -qD pulse sset Master 5%-"),
+            ("<XF86AudioRaiseVolume>"  , spawn "amixer -qD pulse sset Master 5%+"),
+            ("<XF86MonBrightnessUp>"   , spawn "xbacklight -inc 5"),
+            ("<XF86MonBrightnessDown>" , spawn "xbacklight -dec 5")--,
+            --("<XF86AudioPlay>"       , spawn "playerctl play-pause"),
+            --("<XF86AudioNext>"       , spawn "playerctl next"),
+            --("<XF86AudioPrev>"       , spawn "playerctl previous"),
+            --("<XF86AudioStop>"       , spawn "playerctl stop")
         ] `additionalKeys`
         [
             --WM Keys
-            ((myModMask .|. shiftMask, xK_l), spawn "cinnamon-screensaver-command -l"),
-            ((myModMask, xK_p), spawn "rofi -show drun -theme themes/drun.rasi"),
-            ((myModMask, xK_Tab), spawn "rofi -show window -theme themes/window.rasi"),
-            ((myModMask .|. shiftMask, xK_q), spawn "~/.config/rofi/scripts/powermenu.sh"),
+            ((myModMask .|. shiftMask , xK_l)   , spawn "cinnamon-screensaver-command -l"),
+            ((myModMask               , xK_p)   , spawn "rofi -show drun -theme themes/drun.rasi"),
+            ((myModMask               , xK_Tab) , spawn "rofi -show window -theme themes/window.rasi"),
+            ((myModMask .|. shiftMask , xK_q)   , spawn "~/.config/rofi/scripts/powermenu.sh"),
 
             -- APP LAUNCH
-            ((myModMask .|. shiftMask, xK_f), spawn "pcmanfm"),
-            ((myModMask .|. shiftMask, xK_w), spawn "google-chrome"),
-            ((myModMask .|. shiftMask, xK_e), spawn "kitty nvim"),
-            ((myModMask .|. shiftMask, xK_p), spawn "bash -c 'if ! pkill -x compton; then exec compton; fi'"),
-            ((myModMask .|. shiftMask, xK_n), spawn "nmcli dev wifi list; kitty nmtui-connect"),
-            ((myModMask .|. shiftMask, xK_m), spawn "spotify"),
+            ((myModMask .|. shiftMask , xK_f) , spawn "pcmanfm"),
+            ((myModMask .|. shiftMask , xK_w) , spawn "google-chrome"),
+            ((myModMask .|. shiftMask , xK_e) , spawn "kitty nvim"),
+            ((myModMask .|. shiftMask , xK_p) , spawn "bash -c 'if ! pkill -x compton; then exec compton; fi'"),
+            ((myModMask .|. shiftMask , xK_n) , spawn "nmcli dev wifi list; kitty nmtui-connect"),
+            ((myModMask .|. shiftMask , xK_m) , spawn "spotify"),
             -- SCREENSHOTS
-            ((0, xK_Print), spawn "flameshot full -c" ),
-            ((myModMask, xK_Print), spawn "flameshot gui")
+            ((0         , xK_Print) , spawn "flameshot full -c" ),
+            ((myModMask , xK_Print) , spawn "flameshot gui")
         ]

@@ -7,31 +7,40 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 endif
 
 
-
 call plug#begin('~/.config/nvim/plugged')
 
 " Nerd tree to see file structure
-Plug 'preservim/nerdtree'
+Plug 'preservim/nerdtree', {'NERDTreeChDirMode': '2'}
 " Better info display
 Plug 'itchyny/lightline.vim'
+" lightline and ale integration
+Plug 'maximbaz/lightline-ale'
 " Cute icons uwu
 Plug 'ryanoasis/vim-devicons'
 " Cute startup screen
 Plug 'mhinz/vim-startify'
 " See ident lines
 Plug 'Yggdroot/indentLine'
-" Synthatic sugar
-Plug 'tpope/vim-eunuch'
+" Auto close brackets
+Plug 'Raimondi/delimitMate'
+" Show git diff in sign column
+Plug 'airblade/vim-gitgutter'
+
+" Ale
+let g:ale_completion_enabled = 1 
+let g:ale_completion_autoimport = 1
+" let g:ale_lint_delay =      " for laptop battery preservation
+
+" Syntax highlighting and completion
+Plug 'dense-analysis/ale'
+" Aligning text
+Plug 'godlygeek/tabular'
 
 
 call plug#end()
 
 "############### COLOR #################
 set termguicolors
-
-let g:lightline = {
-    \ 'colorscheme': 'seoul256',
-    \ }
 
 
 " Italic comments
@@ -82,11 +91,14 @@ nnoremap <F3> :call ToggleCC()<CR>
 "################# OTHER SETTINGS #################
 set number                  " Line numbers
 set rnu                     " Display line number relative to the current one
+set backspace=indent,eol,start " Fix backspace indent
 set cursorline              " Highlight the current line
 set showmatch               " Highlight matching brackets
 set scrolloff=3             " Minimum lines to keep above/below cursor
-set nowrap                  " No wrapping long lines
-
+set autochdir               " Always on the buffer directory
+set linebreak	            " Break lines at word (requires Wrap lines)
+set showbreak=+++
+set signcolumn=yes          " Always show sign column
 "################# COMMANDS #################
 " Toggles the coloring of the 80th column
 function! ToggleCC()
@@ -106,7 +118,45 @@ autocmd BufRead,BufNewFile * %s/\s\+$//e
 " Disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
+
+"############### PLUGIN CONFIG ###############################
 " Automatically close NERDTree if it's the last window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+let g:lightline = {
+\ 'colorscheme': 'seoul256',
+\ 'active': {
+\   'left' : [ [ 'mode', 'paste' ], 
+\              [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+\   'right': [ [ 'lineinfo' ],
+\              [ 'percent' ],
+\              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ],
+\              [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ] ]
+\ },
+\ 'component_function': {
+\   'gitbranch': 'gitbranch#name'
+\ },
+\ }
+
+let g:lightline.component_expand = {
+\ 'linter_checking': 'lightline#ale#checking',
+\ 'linter_infos': 'lightline#ale#infos',
+\ 'linter_warnings': 'lightline#ale#warnings',
+\ 'linter_errors': 'lightline#ale#errors',
+\ 'linter_ok': 'lightline#ale#ok',
+\ }
+let g:lightline.component_type = {
+\ 'linter_checking': 'right',
+\ 'linter_infos': 'right',
+\ 'linter_warnings': 'warning',
+\ 'linter_errors': 'error',
+\ 'linter_ok': 'right',
+\ }
+
+" ### ALE ###
+let g:ale_fixers = {
+\ '*': ['remove_trailing_lines', 'trim_whitespace'],
+\ 'haskell': ['hls'],
+\ 'java' : ['javac'],
+\ }
 
