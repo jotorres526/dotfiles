@@ -3,13 +3,14 @@
 currDir=$(pwd)
 
 # Symlinking everything to its place
-ln -sf $currDir/.xmobar $HOME/.xmobar
-ln -sf $currDir/.xmonad $HOME/.xmonad
-ln -sf $currDir/.zsh $HOME/.zsh
-ln -sf $currDir/kitty $HOME/.config/kitty
-ln -sf $currDir/nvim $HOME/.config/nvim
-ln -sf $currDir/rofi $HOME/.config/rofi
-ln -sf $currDir/.aliases $HOME/.aliases
-ln -sf $currDir/compton.conf $HOME/.config/compton.conf
+ln -snf $currDir/.xmobar $HOME/.xmobar
+ln -snf $currDir/.xmonad $HOME/.xmonad
+ln -snf $currDir/.zsh $HOME/.zsh
+ln -snf $currDir/.zshrc $HOME/.zshrc
+ln -snf $currDir/kitty $HOME/.config/kitty
+ln -snf $currDir/nvim $HOME/.config/nvim
+ln -snf $currDir/rofi $HOME/.config/rofi
+ln -snf $currDir/.aliases $HOME/.aliases
+ln -snf $currDir/compton.conf $HOME/.config/compton.conf
 
 echo Done.
