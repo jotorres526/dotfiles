@@ -17,7 +17,7 @@ prompt pure                                                     # Pure prompt. C
 
 zstyle :prompt:pure:git:stash show yes
 
-export SUDO_PROMPT=$'\e[1;91mPassword:\e[0m '                                # Make the sudo prompt simpler
+export SUDO_PROMPT=$'\e[1;91mPassword:\e[0m '                   # Make the sudo prompt simpler
 ### Auto-completion ###
 autoload -U compinit
 compinit -d
@@ -36,17 +36,22 @@ HISTFILE=~/.zhistory
 HISTSIZE=1000
 SAVEHIST=500
 
-
 ### KEYBINDINGS ###
 bindkey '^[[1;5C' forward-word                                  # Ctrl+→ -> Goto next word
 bindkey '^[[1;5D' backward-word                                 # Ctrl+← -> Goto previous word
 bindkey '^H' backward-kill-word                                 # Ctrl+backspace -> Delete previous word
 
-
-#### ALIASES ###
+### ALIASES ###
 if [ -e $HOME/.aliases ]; then
     source $HOME/.aliases
 fi
+
+### PATH ###
+if [ -d "$HOME/.local/bin" ] ; then
+    path+=$HOME/.local/bin
+fi
+
+export PATH
 
 ### SYNTAX HIGHLIGHTING ###
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

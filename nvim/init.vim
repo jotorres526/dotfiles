@@ -19,18 +19,10 @@ Plug 'maximbaz/lightline-ale'
 Plug 'ryanoasis/vim-devicons'
 " Cute startup screen
 Plug 'mhinz/vim-startify'
-" See ident lines
-Plug 'Yggdroot/indentLine'
 " Auto close brackets
 Plug 'Raimondi/delimitMate'
 " Show git diff in sign column
 Plug 'airblade/vim-gitgutter'
-
-" Ale
-let g:ale_completion_enabled = 1 
-let g:ale_completion_autoimport = 1
-" let g:ale_lint_delay =      " for laptop battery preservation
-
 " Syntax highlighting and completion
 Plug 'dense-analysis/ale'
 " Aligning text
@@ -38,18 +30,6 @@ Plug 'godlygeek/tabular'
 
 
 call plug#end()
-
-"############### COLOR #################
-set termguicolors
-
-
-" Italic comments
-hi Comment cterm=italic gui=italic
-
-" Set a syntax for some extenstions
-au BufReadPost *.opml setlocal syntax=xml | setlocal filetype=xml
-au BufReadPost *.rasi setlocal syntax=css | setlocal filetype=css
-au BufReadPost *.vue setlocal syntax=html
 
 "############### IDENTATION #################
 
@@ -66,11 +46,11 @@ set incsearch               " Search as characters are typed
 set hlsearch                " Highlight matches
 set ignorecase              " Ignore case when searching
 set smartcase               " Ignore case when only lower case is typed
+set termguicolors
 
 "############### KEYBINDINGS ###############
 " Ctrl+f -> Toggle Tree view
 map <C-f> :NERDTreeToggle<CR>
-
 
 " Ctrl+[Left | Right] -> tabs navigation
 nnoremap <C-Left> :tabprevious<CR>
@@ -99,6 +79,7 @@ set autochdir               " Always on the buffer directory
 set linebreak	            " Break lines at word (requires Wrap lines)
 set showbreak=+++
 set signcolumn=yes          " Always show sign column
+
 "################# COMMANDS #################
 " Toggles the coloring of the 80th column
 function! ToggleCC()
@@ -112,8 +93,8 @@ function! ToggleCC()
 endfunction
 
 "################# AUTO COMMANDS #################
-" Delete trailing whitespaces on save
-autocmd BufRead,BufNewFile * %s/\s\+$//e
+" Delete trailing whitespaces
+autocmd BufWritePre * %s/\s\+$//e
 
 " Disable automatic comment insertion
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -123,10 +104,11 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 " Automatically close NERDTree if it's the last window open
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" ### Lightline
 let g:lightline = {
 \ 'colorscheme': 'seoul256',
 \ 'active': {
-\   'left' : [ [ 'mode', 'paste' ], 
+\   'left' : [ [ 'mode', 'paste' ],
 \              [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
 \   'right': [ [ 'lineinfo' ],
 \              [ 'percent' ],
@@ -137,7 +119,7 @@ let g:lightline = {
 \   'gitbranch': 'gitbranch#name'
 \ },
 \ }
-
+" Syntax checking component
 let g:lightline.component_expand = {
 \ 'linter_checking': 'lightline#ale#checking',
 \ 'linter_infos': 'lightline#ale#infos',
@@ -156,7 +138,8 @@ let g:lightline.component_type = {
 " ### ALE ###
 let g:ale_fixers = {
 \ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'haskell': ['hls'],
+\ 'haskell': ['hlint'],
 \ 'java' : ['javac'],
 \ }
-
+let g:ale_completion_enabled = 1
+let g:ale_completion_autoimport = 1

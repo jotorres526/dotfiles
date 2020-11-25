@@ -6,7 +6,8 @@ import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Util.Run(spawnPipe)
-import XMonad.Util.EZConfig(additionalKeys, additionalMouseBindings, additionalKeysP)
+import XMonad.Util.EZConfig(additionalKeys, additionalMouseBindings)
+import Graphics.X11.ExtraTypes.XF86
 import XMonad.Config.Desktop
 import XMonad.Actions.SpawnOn
 import XMonad.Layout.Spacing
@@ -124,20 +125,17 @@ main = do
             workspaces         = myWorkspaces,
             focusedBorderColor = focdBord,
             normalBorderColor  = normBord
-        } `additionalKeysP`
+        }`additionalKeys`
         [
-            -- MULTIMEDIA KEYS
-            ("<XF86AudioMute>"         , spawn "amixer -qD pulse sset Master toggle"),
-            ("<XF86AudioLowerVolume>"  , spawn "amixer -qD pulse sset Master 5%-"),
-            ("<XF86AudioRaiseVolume>"  , spawn "amixer -qD pulse sset Master 5%+"),
-            ("<XF86MonBrightnessUp>"   , spawn "xbacklight -inc 5"),
-            ("<XF86MonBrightnessDown>" , spawn "xbacklight -dec 5")--,
-            --("<XF86AudioPlay>"       , spawn "playerctl play-pause"),
-            --("<XF86AudioNext>"       , spawn "playerctl next"),
-            --("<XF86AudioPrev>"       , spawn "playerctl previous"),
-            --("<XF86AudioStop>"       , spawn "playerctl stop")
-        ] `additionalKeys`
-        [
+            -- MULTIMEDIA
+            ((0         , xF86XK_AudioMute)         , spawn "amixer -qD pulse sset Master toggle"),
+            ((0         , xF86XK_AudioLowerVolume)  , spawn "amixer -qD pulse sset Master 5%-"),
+            ((0         , xF86XK_AudioRaiseVolume)  , spawn "amixer -qD pulse sset Master 5%+"),
+            ((0         , xF86XK_MonBrightnessUp)   , spawn "xbacklight -inc 5"),
+            ((0         , xF86XK_MonBrightnessDown) , spawn "xbacklight -dec 5"),
+            ((myModMask , xF86XK_AudioMute)         , spawn "playerctl play-pause"),
+            ((myModMask , xF86XK_AudioRaiseVolume)  , spawn "playerctl next"),
+            ((myModMask , xF86XK_AudioLowerVolume)  , spawn "playerctl previous"),
             --WM Keys
             ((myModMask .|. shiftMask , xK_l)   , spawn "cinnamon-screensaver-command -l"),
             ((myModMask               , xK_p)   , spawn "rofi -show drun -theme themes/drun.rasi"),

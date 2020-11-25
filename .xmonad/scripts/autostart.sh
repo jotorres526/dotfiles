@@ -14,15 +14,12 @@ function run {
 # cursor active at boot
 xsetroot -cursor_name left_ptr &
 
-# starting utilities
-run nitrogen --restore &   # redraw wallpaper           # network manager applet
-run xfce4-power-manager &
-numlockx on &
-run compton &
-run unclutter-xfixes & # hide mouse inactivity
-#/usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 & # authentication dialog
-#/usr/lib/x86_64-linux-gnu/xfce4/notifyd/xfce4-notifyd &
-## Started xfce4-notifyd as a systemctl service, but will comment out for future reference
+# Starting utilities
+run nitrogen --restore &      # redraw wallpaper
+libinput-gestures-setup start # touchpad gestures
+run xfce4-power-manager &     # powermanager
+run compton &                 # cool transparency and shadows owo
+run unclutter-xfixes &        # hide mouse when inactive
 
 # Autostart apps
 run discord &

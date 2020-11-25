@@ -25,7 +25,7 @@ Config {
     --Plugins
     commands = [
         Run StdinReader,
-        Run Date "<fn=3>\xf133</fn> %b %d %Y (%H:%M:%S)" "date" 10,
+        Run Date "<fn=3>\xf274</fn> %b %d %Y (%H:%M:%S)" "date" 10,
         Run Cpu ["-t", "CPU: (<total>%)", "-H", "50", "--high", "red"] 10,
         Run Memory ["-t", "RAM: <used>M (<usedratio>%)"] 20,
         Run DynNetwork ["-t", "Network: <fn=3>\xf0ee</fn> <tx>kB/s  <fn=3>\xf0ed</fn> <rx>kB/s"] 20,
