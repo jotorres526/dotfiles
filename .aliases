@@ -1,5 +1,8 @@
 ### Objective -> trying to create mnemonics and command groups to easily check with autocomplete
 
+### Sudo ###
+alias sudo="sudo "
+
 ### List ###
 # Human readable ls
 alias ls="exa -lh --color=always --group-directories-first --git"
@@ -20,12 +23,12 @@ alias restore="trash-restore"
 
 ### Package management ###
 # mnemonic: pac(package) + operation (eg: paci => package install)
-alias paci="sudo apt install"
-alias pacup="sudo apt update"
-alias pacrem="sudo apt purge"
-alias pacautorem="sudo apt autoremove"
-alias pacs="sudo apt search"
-alias pacl="sudo apt list --installed"
+alias paci="sudo pacman -S"
+alias pacup="sudo pacman -Syu"
+alias pacrem="sudo pacman -Rs"
+alias pacautorem="sudo sh -c 'pacman -Qtdq | pacman -Rns -'"
+alias pacs="sudo pacman -Ss"
+alias pacl="sudo pacman -Qs"
 
 ### Network ###
 alias ping='ping -c 5'

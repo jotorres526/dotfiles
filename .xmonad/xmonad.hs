@@ -81,7 +81,7 @@ myManageHook = composeAll . concat $
         my1Shifts     = ["kitty"]
         my2Shifts     = ["discord"]
         my3Shifts     = ["Spotify"]
-        my4Shifts     = ["Firefox", "Chromium-browser", "Google-chrome"]
+        my4Shifts     = ["Firefox", "Chromium", "Google-chrome"]
         my5Shifts     = []
         my6Shifts     = []
         my7Shifts     = []
@@ -144,7 +144,7 @@ main = do
 
             -- APP LAUNCH
             ((myModMask .|. shiftMask , xK_f) , spawn "pcmanfm"),
-            ((myModMask .|. shiftMask , xK_w) , spawn "google-chrome"),
+            ((myModMask .|. shiftMask , xK_w) , spawn "chromium"),
             ((myModMask .|. shiftMask , xK_e) , spawn "kitty nvim"),
             ((myModMask .|. shiftMask , xK_p) , spawn "bash -c 'if ! pkill -x compton; then exec compton; fi'"),
             ((myModMask .|. shiftMask , xK_n) , spawn "nmcli dev wifi list; kitty nmtui-connect"),
