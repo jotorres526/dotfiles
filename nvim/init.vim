@@ -27,7 +27,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'dense-analysis/ale'
 " Aligning text
 Plug 'godlygeek/tabular'
-
+" Discord goodies cuz why not
+Plug 'hugolgst/vimsence'
 
 call plug#end()
 

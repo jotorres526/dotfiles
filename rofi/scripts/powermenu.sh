@@ -14,18 +14,15 @@ chosen="$(echo -e "$options" | $rofi_command -dmenu)"
 case $chosen in
     $suspend)
         systemctl suspend
-	cinnamon-screensaver-command -l
-	;;
+	    ;;
     $power_off)
-	#runit-init 1    
         poweroff
         ;;
     $reboot)
-	#runit-init 6
         reboot
         ;;
     $log_out)
-	pkill -9 -u $USER
-	;;
+	    pkill -9 -u $USER
+	    ;;
 esac
 

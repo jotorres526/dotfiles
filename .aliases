@@ -1,8 +1,6 @@
 ### Objective -> trying to create mnemonics and command groups to easily check with autocomplete
-
 ### Sudo ###
 alias sudo="sudo "
-
 ### List ###
 # Human readable ls
 alias ls="exa -lh --color=always --group-directories-first --git"
