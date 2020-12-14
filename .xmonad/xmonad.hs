@@ -75,13 +75,13 @@ myManageHook = composeAll . concat $
     ] where
         doShiftAndGo  = doF .  liftM2 (.) W.greedyView W.shift
         myCFloats     = ["Gnome-calculator", "Pavucontrol"]
-        myTitleFloats = ["Downloads", "Save As..."]
+        myTitleFloats = ["Downloads", "Save As...", "Friends List"]
         myResFloats   = []
         myIgnores     = ["desktop_window"]
         my1Shifts     = ["kitty"]
         my2Shifts     = ["discord"]
         my3Shifts     = ["Spotify"]
-        my4Shifts     = ["Firefox", "Chromium", "Google-chrome"]
+        my4Shifts     = ["Firefox", "Chromium", "Google-chrome", "Brave-browser"]
         my5Shifts     = []
         my6Shifts     = []
         my7Shifts     = []
@@ -141,10 +141,9 @@ main = do
             ((myModMask               , xK_p)   , spawn "rofi -show drun -theme themes/drun.rasi"),
             ((myModMask               , xK_Tab) , spawn "rofi -show window -theme themes/window.rasi"),
             ((myModMask .|. shiftMask , xK_q)   , spawn "~/.config/rofi/scripts/powermenu.sh"),
-
             -- APP LAUNCH
             ((myModMask .|. shiftMask , xK_f) , spawn "pcmanfm"),
-            ((myModMask .|. shiftMask , xK_w) , spawn "chromium"),
+            ((myModMask .|. shiftMask , xK_w) , spawn "brave"),
             ((myModMask .|. shiftMask , xK_e) , spawn "kitty nvim"),
             ((myModMask .|. shiftMask , xK_p) , spawn "bash -c 'if ! pkill -x picom; then exec picom; fi'"),
             ((myModMask .|. shiftMask , xK_n) , spawn "kitty nmtui-connect"),

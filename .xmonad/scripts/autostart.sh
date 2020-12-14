@@ -12,14 +12,15 @@ function run {
 xsetroot -cursor_name left_ptr &
 
 # Starting utilities
-run nitrogen --restore &                 # redraw wallpaper
-libinput-gestures-setup start            # touchpad gestures
-run xfce4-power-manager &                # powermanager
-run xfce4-screensaver &                  # screensave and lock
-run picom &                              # cool transparency and shadows owo
-run parcellite &                         # Clipmanager
-run unclutter-xfixes &                   # hide mouse when inactive
-run /usr/lib/xfce4/notifyd/xfce4-notifyd # Notifications daemon
+run nitrogen --restore &                                      # redraw wallpaper
+libinput-gestures-setup start                                 # touchpad gestures
+run xfce4-power-manager &                                     # powermanager
+run xfce4-screensaver &                                       # screensave and lock
+run picom &                                                   # cool transparency and shadows owo
+run parcellite &                                              # Clipmanager
+run unclutter-xfixes &                                        # hide mouse when inactive
+run /usr/lib/xfce4/notifyd/xfce4-notifyd                      # Notifications daemon
+run /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 # Polkit
 
 # Autostart apps
 run discord &

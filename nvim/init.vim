@@ -23,8 +23,6 @@ Plug 'mhinz/vim-startify'
 Plug 'Raimondi/delimitMate'
 " Show git diff in sign column
 Plug 'airblade/vim-gitgutter'
-" Syntax highlighting and completion
-Plug 'dense-analysis/ale'
 " Aligning text
 Plug 'godlygeek/tabular'
 " Discord goodies cuz why not
@@ -120,27 +118,3 @@ let g:lightline = {
 \   'gitbranch': 'gitbranch#name'
 \ },
 \ }
-" Syntax checking component
-let g:lightline.component_expand = {
-\ 'linter_checking': 'lightline#ale#checking',
-\ 'linter_infos': 'lightline#ale#infos',
-\ 'linter_warnings': 'lightline#ale#warnings',
-\ 'linter_errors': 'lightline#ale#errors',
-\ 'linter_ok': 'lightline#ale#ok',
-\ }
-let g:lightline.component_type = {
-\ 'linter_checking': 'right',
-\ 'linter_infos': 'right',
-\ 'linter_warnings': 'warning',
-\ 'linter_errors': 'error',
-\ 'linter_ok': 'right',
-\ }
-
-" ### ALE ###
-let g:ale_fixers = {
-\ '*': ['remove_trailing_lines', 'trim_whitespace'],
-\ 'haskell': ['hlint'],
-\ 'java' : ['javac'],
-\ }
-let g:ale_completion_enabled = 1
-let g:ale_completion_autoimport = 1
