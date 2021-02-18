@@ -21,27 +21,35 @@ alias restore="trash-restore"
 
 ### Package management ###
 # mnemonic: pac(package) + operation (eg: paci => package install)
-alias paci="sudo pacman -S"
-alias pacup="sudo pacman -Syu"
-alias pacrem="sudo pacman -Rs"
-alias pacautorem="sudo sh -c 'pacman -Qtdq | pacman -Rns -'"
-alias pacs="sudo pacman -Ss"
-alias pacl="sudo pacman -Qs"
+alias paci="sudo apt install"
+alias pacup="sudo apt update && sudo apt upgrade -y"
+alias pacrem="sudo apt purge"
+alias pacclean="sudo apt autoremove"
+alias pacs="sudo apt search"
+alias pacl="sudo apt list"
 
 ### Network ###
 alias ping='ping -c 5'
 
-
 ### Git ###
-# mnemonic: sg(short git) + operation (eg: sgup => short git + upload(push))
-alias sgup="git push"
-alias sgdn="git pull"
-alias sgadd="git add"
-alias sgcom="sgadd . && git commit"
-alias sgsta="git status"
-# Clone repo into ~/Repositories and cd to the project
-sgcl() {
+# mnemonic: g(git) + operation (eg: gul => git + upload(push))
+alias gul="git push"
+alias gdl="git pull"
+alias gadd="git add"
+alias gcm="git commit"
+alias gst="git status"
+# Clones a repository into ~/Repositories and cd's to the cloned folder
+gcl() {
     mkdir ~/Repositories && cd ~/Repositories
     git clone $1
     cd "$(basename "$1" .git)"
+}
+
+gitaliases() {
+    echo "\
+    - gul:  git push\n\
+    - gdl:  git pull\n\
+    - gadd: git add\n\
+    - gcm:  git commit\n\
+    - gst:  git status"
 }
