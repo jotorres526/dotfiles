@@ -55,3 +55,6 @@ export PATH
 
 ### SYNTAX HIGHLIGHTING ###
 source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+### KITTY COMPLETION ###
+kitty + complete setup zsh | source /dev/stdin
