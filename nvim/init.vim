@@ -13,8 +13,6 @@ call plug#begin('~/.config/nvim/plugged')
 Plug 'preservim/nerdtree', {'NERDTreeChDirMode': '2'}
 " Better info display
 Plug 'itchyny/lightline.vim'
-" lightline and ale integration
-Plug 'maximbaz/lightline-ale'
 " Cute icons uwu
 Plug 'ryanoasis/vim-devicons'
 " Cute startup screen
@@ -23,8 +21,6 @@ Plug 'mhinz/vim-startify'
 Plug 'Raimondi/delimitMate'
 " Show git diff in sign column
 Plug 'airblade/vim-gitgutter'
-" Aligning text
-Plug 'godlygeek/tabular'
 " Discord goodies cuz why not
 Plug 'hugolgst/vimsence'
 
@@ -45,7 +41,7 @@ set incsearch               " Search as characters are typed
 set hlsearch                " Highlight matches
 set ignorecase              " Ignore case when searching
 set smartcase               " Ignore case when only lower case is typed
-set termguicolors
+"set termguicolors
 
 "############### KEYBINDINGS ###############
 " Ctrl+f -> Toggle Tree view
@@ -111,8 +107,7 @@ let g:lightline = {
 \              [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
 \   'right': [ [ 'lineinfo' ],
 \              [ 'percent' ],
-\              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ],
-\              [ 'linter_checking', 'linter_errors', 'linter_warnings', 'linter_infos', 'linter_ok' ] ]
+\              [ 'fileformat', 'fileencoding', 'filetype', 'charvaluehex' ] ]
 \ },
 \ 'component_function': {
 \   'gitbranch': 'gitbranch#name'
