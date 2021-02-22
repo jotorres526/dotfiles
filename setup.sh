@@ -16,6 +16,6 @@ ln -snf $currDir/.aliases $HOME/
 #ln -snf $currDir/compton.conf $HOME/.config/
 
 sudo apt update && sudo apt upgrade -y
-sudo apt install build-essential flameshot visual-studio-code htop neovim -y
+sudo apt install build-essential flameshot visual-studio-code htop neovim trash-cli -y
 
 echo Done.
